@@ -5,12 +5,7 @@ def welcome(request):
     template_name = "landingpage/index.html"
     kategori = Kategori.objects.all()
     artikel = Artikel.objects.all()
-    
-    for k in kategori:
-        print(k)
-    for a in artikel:
-        print(a)
-        
+
     context = {
         "title":"selamat datang",
         "kategori":kategori,
@@ -54,14 +49,19 @@ def kontak(request):
 
 
 def dashboard(request):
+    jumlah_kategori = Kategori.objects.count()
+    jumlah_artikel = Artikel.objects.count()
     if not request.user.is_authenticated:
         return redirect('/auth-login')
     
     template_name = "dashboard/index.html"
     context = {
-        "title":"Selamat Datang"
+        "title":"Selamat Datang",
+        'jumlah_kategori':jumlah_kategori,
+        'jumlah_artikel':jumlah_artikel
     }
     return render(request, template_name, context)
+    
 
 
 def artikel_list(request):

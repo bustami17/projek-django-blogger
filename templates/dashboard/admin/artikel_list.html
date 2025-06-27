@@ -6,7 +6,10 @@
       <div class="card">
         <!-- Card header -->
         <div class="card-header">
-          <h5 class="mb-0">Daftar Artikel<a class="btn btn-outline-warning" href="{% url 'admin_artikel_tambah' %}"> + Tambah</a></h5>
+          <h4 class="mb-0" style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="background-color: blue; color: white; padding: 8px 15px; border-radius: 999px; display: inline-block;">Daftar Artikel Anda</span>
+             <a class="btn btn-outline-warning" href="{% url 'admin_artikel_tambah' %}"> + Tambah</a>
+          </h4>
         </div>
         <div class="table-responsive">
           <table class="table table-flush" id="datatable-search">
@@ -23,12 +26,14 @@
               {% for artikel in artikel %}
               <tr>
                 <td class="text-sm font-weight-normal">{{ forloop.counter }}</td>
-                <td class="text-sm font-weight-normal">{{ artikel.judul }}</td>
+                <td class="text-sm font-weight-normal">
+                {{ artikel.judul }} <br/> <span class="badge badge-primary">created by : {{ artikel.created_by }} </span>
+                </td>
                 <td class="text-sm font-weight-normal">{{ artikel.kategori }}</td>
                 <td class="text-sm font-weight-normal">{{ artikel.status }}</td>
                 <td class="text-sm font-weight-normal text-center">
                   <a class="btn btn-warning btn-sm" href="{% url 'admin_artikel_update' artikel.id %}">Edit</a>
-                  <a class="btn btn-danger btn-sm" href="{% url 'admin_artikel_delete' artikel.id %}">Delete</a>
+                  <a class="btn btn-danger btn-sm" onclick="return confirm('yakin ingin delete?')" href="{% url 'admin_artikel_delete' artikel.id %}">Delete</a>
                 </td>
               </tr>
               {% endfor %}

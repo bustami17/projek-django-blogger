@@ -5,19 +5,22 @@
     <div class="col-12">
       <div class="card">
         <!-- Card header -->
-        <div class="card-header">
-          <h5 class="mb-0">Daftar Kategori <a class="btn btn-outline-warning" href="{% url 'admin_kategori_tambah' %}"> + Tambah</a></h5>
-        </div>
+       <div class="card-header">
+          <h5 class="mb-0" style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="background-color: blue; color: white; padding: 8px 15px; border-radius: 999px; display: inline-block;">Daftar Kategori</span>
+              <a class="btn btn-outline-warning" href="{% url 'admin_kategori_tambah' %}"> + Tambah</a>
+          </h5>
+      </div>
         <div class="table-responsive">
           <table class="table table-flush" id="datatable-search">
             <thead class="thead-light">
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Created At</th>
-                <th>Created By</th>
-                <th class="text-center">Action</th>
-              </tr>
+             <tr>
+                <th style="border: 1px solid #ccc; padding: 8px;">No</th>
+                <th style="border: 1px solid #ccc; padding: 8px;">Nama</th>
+                <th style="border: 1px solid #ccc; padding: 8px;">Created At</th>
+                <th style="border: 1px solid #ccc; padding: 8px;">Created By</th>
+                <th class="text-center" style="border: 1px solid #ccc; padding: 8px;">Action</th>
+            </tr>
             </thead>
             <tbody>
               {% for kat in kategori %}
@@ -28,7 +31,7 @@
                 <td class="text-sm font-weight-normal">{{ kat.created_by }}</td>
                 <td class="text-sm font-weight-normal text-center">
                   <a class="btn btn-warning btn-sm" href="{% url 'admin_kategori_update' kat.id %}">Edit</a>
-                  <a class="btn btn-danger btn-sm" href="{% url 'admin_kategori_delete' kat.id %}">Delete</a>
+                  <a class="btn btn-danger btn-sm"  onclick="return confirm('yakin ingin delete?')" href="{% url 'admin_kategori_delete' kat.id %}">Delete</a>
                 </td>
               </tr>
               {% endfor %}

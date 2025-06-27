@@ -1,6 +1,7 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
 {% block css %}
+
 <style>
   .django-ckeditor-widget {
     width: 100%;
@@ -21,11 +22,12 @@
           <h6 class="mb-0">Form Artikel</h6>
         </div>
         <div class="card-body pt-2">
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data" novalidate>
                 {% csrf_token %}
                 <div class="input-group input-group-dynamic">
                     <label for="projectName" class="form-label">Judul</label>
                     {{ forms.judul }}
+                    <br /><br />
                 </div>
                 <br /><br />
                 <div class="input-group input-group-dynamic">

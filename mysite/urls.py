@@ -10,7 +10,7 @@ from mysite.authentication import  login, logout, registrasi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',welcome,name="welcome"),
+    path('', welcome, name="welcome"),
     
     path('artikel/<int:id>', detail_artikel, name="detail_artikel"),
     path('artikel-not-found', not_found_artikel, name="not_found_artikel"),
@@ -20,15 +20,24 @@ urlpatterns = [
     path('dashboard/', dashboard, name="dashboard"),
     path('dashboard/artikel_list', artikel_list, name="artikel_list"),
     path('dashboard/', include("artikel.urls")),
+    
 
     ###### Authentication ######
     path('auth-login', login, name="login"),
     path('auth-logout', logout, name="logout"),
     path('auth-registrasi', registrasi, name="registrasi"),
+
+
 ]
 
-    
 
+
+#untuk media
 urlpatterns += staticfiles_urlpatterns()
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+
+urlpatterns += [
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
